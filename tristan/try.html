@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="au.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="geography.css">
+    <script src="geography.js" defer></script>
+
+    <script>
+        function showForm(productId) {
+            
+            var form = document.getElementById("reservationForm-" + productId);
+            form.style.display = "block";
+            
+            document.getElementById("productId-" + productId).value = productId;
+        }
+
+        function closePreview() {
+            var preview = document.querySelector(".preview.show");
+            preview.classList.remove("show");
+        }
+
+        function togglePreview() {
+            var preview = document.querySelector(".preview");
+            preview.classList.toggle("show");
+        }
+
+        
+document.addEventListener('DOMContentLoaded', function() {
+    var userTypeSelect = document.getElementById('userType-p-1');
+    var studentOptions = document.getElementById('studentOptions-p-1');
+    var facultyOptions = document.getElementById('facultyOptions-p-1');
+
+
+    userTypeSelect.addEventListener('change', function() {
+        if (userTypeSelect.value === 'student') {
+            studentOptions.style.display = 'block';
+            facultyOptions.style.display = 'none';
+        } else if (userTypeSelect.value === 'faculty') {
+            studentOptions.style.display = 'none';
+            facultyOptions.style.display = 'block';
+        } else {
+            studentOptions.style.display = 'none';
+            facultyOptions.style.display = 'none';
+        }
+    });
+});
+
+    </script>
+        <script>
+
+            function searchBooks() {
+                var input, filter, container, books, book, i;
+                input = document.getElementById('searchInput');
+                filter = input.value.toUpperCase();
+                container = document.getElementsByClassName('products-container')[0];
+                books = container.getElementsByClassName('book');
+            
+                for (i = 0; i < books.length; i++) {
+                    book = books[i];
+                    if (book.getElementsByTagName('h3')[0].innerText.toUpperCase().indexOf(filter) > -1) {
+                        book.style.display = "";
+                    } else {
+                        book.style.display = "none";
+                    }
+                }
+            }
+            </script>
+
+<style>
+        
+    body {
+        background: #eee;
+        background-image: url(background.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+search-bar {
+position: sticky;
+top: 0;
+background-color: grey;
+text-align: center;
+padding: 20px 0;
+}
+.search-bar input[type="text"] {
+padding: 6px;
+width: 70%;
+box-sizing: border-box;
+}
+.search-bar button {
+padding: 6px;
+background-color: blue;
+color: white;
+font-style: inherit;
+font-weight: bold;
+transition: box-shadow 0.4s;
+}
+.search-bar button:hover {
+box-shadow: 0 4px 32px hsla(229, 100%, 3%, 0.4); 
+}
+.container {
+width: 80%;
+margin: 0 auto;
+}
+.title {
+margin-bottom: 10px;
+}
+.book {
+display: block;
+margin-bottom: 20px;
+}
+
+    
+    #reservationForm-p-1,
+    #reservationForm-p-2,
+    #reservationForm-p-3,
+    #reservationForm-p-4,
+    #reservationForm-p-5,
+    #reservationForm-p-6 {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    #reservationForm-p-1 label,
+    #reservationForm-p-2 label,
+    #reservationForm-p-3 label,
+    #reservationForm-p-4 label,
+    #reservationForm-p-5 label,
+    #reservationForm-p-6 label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 1.5rem;
+    }
+
+    #reservationForm-p-1 input[type="text"],
+    #reservationForm-p-1 select,
+    #reservationForm-p-1 input[type="date"],
+    #reservationForm-p-2 input[type="text"],
+    #reservationForm-p-2 select,
+    #reservationForm-p-2 input[type="date"],
+    #reservationForm-p-3 input[type="text"],
+    #reservationForm-p-3 select,
+    #reservationForm-p-3 input[type="date"],
+    #reservationForm-p-4 input[type="text"],
+    #reservationForm-p-4 select,
+    #reservationForm-p-4 input[type="date"],
+    #reservationForm-p-5 input[type="text"],
+    #reservationForm-p-5 select,
+    #reservationForm-p-5 input[type="date"],
+    #reservationForm-p-6 input[type="text"],
+    #reservationForm-p-6 select,
+    #reservationForm-p-6 input[type="date"] {
+        width: calc(100% - 16px); 
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    #reservationForm-p-1 button,
+    #reservationForm-p-2 button,
+    #reservationForm-p-3 button,
+    #reservationForm-p-4 button,
+    #reservationForm-p-5 button,
+    #reservationForm-p-6 button {
+        width: calc(100% - 16px); 
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #reservationForm-p-1 button:hover,
+    #reservationForm-p-2 button:hover,
+    #reservationForm-p-3 button:hover,
+    #reservationForm-p-4 button:hover,
+    #reservationForm-p-5 button:hover,
+    #reservationForm-p-6 button:hover {
+        background-color: #45a049;
+    }
+
+    #studentOptions,
+    #facultyOptions,
+    #studentOptions-p-3,
+    #facultyOptions-p-3,
+    #studentOptions-p-4,
+    #facultyOptions-p-4,
+    #studentOptions-p-5,
+    #facultyOptions-p-5,
+    #studentOptions-p-6,
+    #facultyOptions-p-6 {
+        margin-top: 10px;
+    }
+
+    #studentOptions select,
+    #facultyOptions select,
+    #studentOptions-p-3 select,
+    #facultyOptions-p-3 select,
+    #studentOptions-p-4 select,
+    #facultyOptions-p-4 select,
+    #studentOptions-p-5 select,
+    #facultyOptions-p-5 select,
+    #studentOptions-p-6 select,
+    #facultyOptions-p-6 select {
+        width: calc(100% - 18px);
+        padding: 8px;
+        margin-top: 5px;
+    }
+</style>
+
+<style>
+    /* Style for the navigation bar */
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    /* Style for the navigation links */
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+
+    /* Change color on hover */
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    /* Dropdown container */
+    .dropdown {
+        float: left;
+        overflow: hidden;
+    }
+
+    /* Style for the dropdown button */
+    .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 20px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+    }
+
+    /* Style for the dropdown content (hidden by default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        z-index: 1;
+    }
+
+    /* Style for the links inside the dropdown */
+    .dropdown-content a {
+        float: none;
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="gr2.html">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Books ▾</button>
+    <div class="dropdown-content">
+      <a href="math.html">Math Books</a>
+      <a href="english.html">English Books</a>
+      <a href="science.html">Science Books</a>
+      <a href="geography.html">Geography Books</a>
+    </div>
+  </div> 
+  <a href="Thirdpage.html">About</a>
+  <a href="logout.php" style="float: right;">Logout</a>
+</div>
+
+</body>
+</html>
+<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button type="button" onclick="searchBooks()">Search</button>
+</div>
+
+    <div class="container">
+        <h3 class="title">Featured Books</h3>
+
+        <div class="products-container">
+            <div class="book" data-name="p-1" onclick="showForm('p-1')">
+                <img src="darwin.jpg" alt="">
+                <h3>Darwin Thoery Evolution</h3>
+                <div class="avail">Available</div>
+            </div>
+
+            <div class="book" data-name="p-2" onclick="showForm('p-2')">
+                <img src="history.jpg" alt="">
+                <h3>History Of The <br>
+                    World Map</h3>
+                <div class="avail">Available</div>
+            </div>
+
+            <div class="book" data-name="p-3" onclick="showForm('p-3')">
+                <img src="algebra.jpg" alt="">
+                <h3>Algebra</h3>
+                <div class="avail">Available</div>
+            </div>
+
+            <div class="book" data-name="p-4" onclick="showForm('p-4')">
+                <img src="war.jpg" alt="">
+                <h3>The First World <br>
+                    War</h3>
+                <div class="avail">Available</div>
+            </div>
+
+            <div class="book" data-name="p-5" onclick="showForm('p-5')">
+                <img src="grammar - Copy.jpg" alt="">
+                <h3>English Grammar</h3>
+                <div class="avail">Available</div>
+            </div>
+
+            <div class="book" data-name="p-6" onclick="showForm('p-6')">
+                <img src="first.jpg" alt="">
+                <h3>My First Geography<br>
+                Book</h3>
+                <div class="avail">Available</div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="products-preview">
+
+        <div class="preview " data-target="p-1" >
+            <i class="fas fa-times"  onclick="closePreview()"></i>></i>
+            <img src="darwin.jpg" alt="">
+            <h3>Darwin Thoery Evolution</h3>
+            <div class="stars">
+                <p>Author Name<br>Charles Darwin</p>
+            </div>
+            <p>Returned Before 2 Days!!</p>
+            <div class="avail">Available</div>
+            <div class="buttons">
+            <a href="#" class="Cart" onclick="showForm('p-1')">Reserve Now</a>
+        </div>
+        
+        <div id="reservationForm-p-1" style="display: none;">
+            <form id="reservationData-p-1" action="reserve.php" method="post">
+                <input type="hidden" id="productId-p-1" name="productId" value="p-1">
+                
+                <label for="name-p-1">Student's Name:</label>
+                <input type="text" id="name-p-1" name="name" placeholder="Your name">
+                
+                <label for="grade">LRN ID:</label>
+                <input type="text" id="grade-p-1" name="grade" placeholder="LRN ID">
+
+                <label for="section">Students Grade&Section:</label>
+                <input type="text" id="section-p-1" name="section" placeholder="Students Grade&Section">
+
+                <label for="adviser">Adviser:</label>
+                <input type="text" id="adviser-p-1" name="adviser" placeholder="Your Adviser">
+
+                <label for="contact">Author Name:</label>
+                <input type="text" id="contact-p-1" name="contact" placeholder="Author">
+
+                <label for="title">Title of Book Borrowed:</label>
+                <input type="text" id="title-p-1" name="title" placeholder="Title of the book">
+
+                <label for="userType">User Type:</label>
+                <select id="userType-p-1" name="userType">
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty</option>
+                </select>
+
+                <div id="studentOptions-p-1" style="display: none;">
+                    <label for="studentType">Student Type:</label>
+                    <select id="studentType-p-1" name="studentType">
+                        <option value="junior">Junior</option>
+                        <option value="senior">Senior</option>
+                    </select>
+                </div>
+
+                <div id="facultyOptions-p-1" style="display: none;">
+                    <label for="facultyType">Faculty Type:</label>
+                    <select id="facultyType-p-1" name="facultyType">
+                        <option value="senior">Senior</option>
+                        <option value="junior">Junior</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <label for="dateBorrowed">Date Reserved:</label>
+                <input type="date" id="dateBorrowed-p-1" name="dateBorrowed">
+
+                <label for="accessionNo">Accession No.:</label>
+                <input type="text" id="accessionNo-p-1" name="accessionNo" placeholder="Accession No.">
+
+                
+                <button type="submit">Reserve!</button>
+            </form>
+        </div>
+        </div>
+
+        <div class="preview" data-target="p-2">
+            <i class="fas fa-times" onclick="closePreview()"></i>
+            <img src="history.jpg" alt="">
+            <h3>History Of The <br>
+                World Map</h3>
+                <div class="stars">
+                    <p>Author Name<br>Smithsonian</p>
+                </div>
+                <p>Returned Before 2 Days!!</p>
+            <div class="avail">Available</div>
+            <div class="buttons">
+            <a href="#" class="Cart" onclick="showForm('p-2')">Reserve Now</a>
+        </div>
+        <div id="reservationForm-p-2" style="display: none;">
+            <form id="reservationData-p-2" action="reserve.php" method="post">
+                <input type="hidden" id="productId-p-2" name="productId" value="p-2"> 
+                
+                <label for="name-p-2">Student's Name:</label>
+                <input type="text" id="name-p-2" name="name" placeholder="Your name">
+                
+                <label for="grade">LRN ID:</label>
+                <input type="text" id="grade-p-2" name="grade" placeholder="LRN ID">
+
+                <label for="section">Students Grade&Section:</label>
+                <input type="text" id="section-p-2" name="section" placeholder="Students Grade&Section">
+
+                <label for="adviser">Adviser:</label>
+                <input type="text" id="adviser-p-2" name="adviser" placeholder="Your Adviser">
+
+                <label for="contact">Author Name:</label>
+                <input type="text" id="contact-p-2" name="contact" placeholder="Author">
+
+                <label for="title">Title of Book Borrowed:</label>
+                <input type="text" id="title-p-2" name="title" placeholder="Title of the book">
+
+                <label for="userType">User Type:</label>
+                <select id="userType-p-2" name="userType">
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty</option>
+                </select>
+
+                <div id="studentOptions-p-2" style="display: none;">
+                    <label for="studentType">Student Type:</label>
+                    <select id="studentType-p-2" name="studentType">
+                        <option value="junior">Junior</option>
+                        <option value="senior">Senior</option>
+                    </select>
+                </div>
+
+                <div id="facultyOptions-p-2" style="display: none;">
+                    <label for="facultyType">Faculty Type:</label>
+                    <select id="facultyType-p-2" name="facultyType">
+                        <option value="senior">Senior</option>
+                        <option value="junior">Junior</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <label for="dateBorrowed">Date Reserved:</label>
+                <input type="date" id="dateBorrowed-p-2" name="dateBorrowed">
+
+                <label for="accessionNo">Accession No.:</label>
+                <input type="text" id="accessionNo-p-2" name="accessionNo" placeholder="Accession No.">
+
+                
+                <button type="submit">Reserve!</button>
+            </form>
+        </div>
+        </div>
+
+        <div class="preview" data-target="p-3">
+            <i class="fas fa-times" onclick="closePreview()"></i>
+            <img src="algebra.jpg" alt="">
+            <h3>Darwin Thoery Evolution</h3>
+            <div class="stars">
+                <p>Author Name<br></p>
+            </div>
+            <p>Returned Before 2 Days!!</p>
+            <div class="avail">Available</div>
+            <div class="buttons">
+        <a href="#" class="Cart" onclick="showForm('p-3')">Reserve Now</a>
+    </div>
+    <div id="reservationForm-p-3" style="display: none;">
+        <form id="reservationData-p-3" action="reserve.php" method="post">
+            <input type="hidden" id="productId-p-3" name="productId">
+            
+            <label for="name-p-3">Student's Name:</label>
+            <input type="text" id="name-p-3" name="name" placeholder="Your name">
+            
+            <label for="grade">LRN ID:</label>
+            <input type="text" id="grade-p-3" name="grade" placeholder="LRN ID">
+
+            <label for="section">Students Grade&Section:</label>
+            <input type="text" id="section-p-3" name="section" placeholder="Students Grade&Section">
+
+            <label for="adviser">Adviser:</label>
+            <input type="text" id="adviser-p-3" name="adviser" placeholder="Your Adviser">
+
+            <label for="contact">Author Name:</label>
+            <input type="text" id="contact-p-3" name="contact" placeholder="Author">
+
+            <label for="title">Title of Book Borrowed:</label>
+            <input type="text" id="title-p-3" name="title" placeholder="Title of the book">
+
+            <label for="userType">User Type:</label>
+            <select id="userType-p-3" name="userType">
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+            </select>
+
+            <div id="studentOptions-p-3" style="display: none;">
+                <label for="studentType">Student Type:</label>
+                <select id="studentType-p-3" name="studentType">
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </div>
+
+            <div id="facultyOptions-p-3" style="display: none;">
+                <label for="facultyType">Faculty Type:</label>
+                <select id="facultyType-p-3" name="facultyType">
+                    <option value="senior">Senior</option>
+                    <option value="junior">Junior</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <label for="dateBorrowed">Date Reserved:</label>
+            <input type="date" id="dateBorrowed-p-3" name="dateBorrowed">
+
+            <label for="accessionNo">Accession No.:</label>
+            <input type="text" id="accessionNo-p-3" name="accessionNo" placeholder="Accession No.">
+
+            
+            <button type="submit">Reserve!</button>
+        </form>
+    </div>
+        </div>
+        
+        <div class="preview" data-target="p-4">
+            <i class="fas fa-times" onclick="closePreview()"></i>
+            <img src="war.jpg" alt="">
+            <h3>The First World <br>
+                War</h3>
+                <div class="stars">
+                    <p>Author Name<br>Michael Howard</p>
+                </div>
+                <p>Returned Before 2 Days!!</p>
+            <div class="avail">Available</div>
+            <div class="buttons">
+        <a href="#" class="Cart" onclick="showForm('p-4')">Reserve Now</a>
+    </div>
+    <div id="reservationForm-p-4" style="display: none;">
+        <form id="reservationData-p-4" action="reserve.php" method="post">
+            <input type="hidden" id="productId-p-4" name="productId">
+    
+            <label for="name-p-4">Student's Name:</label>
+            <input type="text" id="name-p-4" name="name" placeholder="Your name">
+           
+            <label for="grade">LRN ID:</label>
+            <input type="text" id="grade-p-4" name="grade" placeholder="LRN ID">
+
+            <label for="section">Students Grade&Section:</label>
+            <input type="text" id="section-p-4" name="section" placeholder="Students Grade&Section">
+
+            <label for="adviser">Adviser:</label>
+            <input type="text" id="adviser-p-4" name="adviser" placeholder="Your Adviser">
+
+            <label for="contact">Author Name:</label>
+            <input type="text" id="contact-p-4" name="contact" placeholder="Author">
+
+            <label for="title">Title of Book Borrowed:</label>
+            <input type="text" id="title-p-4" name="title" placeholder="Title of the book">
+
+            <label for="userType">User Type:</label>
+            <select id="userType-p-4" name="userType">
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+            </select>
+
+            <div id="studentOptions-p-4" style="display: none;">
+                <label for="studentType">Student Type:</label>
+                <select id="studentType-p-4" name="studentType">
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </div>
+
+            <div id="facultyOptions-p-4" style="display: none;">
+                <label for="facultyType">Faculty Type:</label>
+                <select id="facultyType-p-4" name="facultyType">
+                    <option value="senior">Senior</option>
+                    <option value="junior">Junior</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <label for="dateBorrowed">Date Reserved:</label>
+            <input type="date" id="dateBorrowed-p-4" name="dateBorrowed">
+
+            <label for="accessionNo">Accession No.:</label>
+            <input type="text" id="accessionNo-p-4" name="accessionNo" placeholder="Accession No.">
+
+            
+            <button type="submit">Reserve!</button>
+        </form>
+    </div>
+        </div>
+
+        <div class="preview" data-target="p-5">
+            <i class="fas fa-times" onclick="closePreview()"></i>
+            <img src="grammar - Copy.jpg" alt="">
+            <h3>English Grammar</h3>
+            <div class="stars">
+                <p>Author Name<br>Celentano</p>
+            </div>
+            <p>Returned Before 2 Days!!</p>
+            <div class="avail">Available</div>
+            <div class="buttons">
+        <a href="#" class="Cart" onclick="showForm('p-5')">Reserve Now</a>
+    </div>
+    <div id="reservationForm-p-5" style="display: none;">
+    <form id="reservationData-p-5" action="reserve.php" method="post">
+        <input type="hidden" id="productId-p-5" name="productId">
+        
+        <label for="name">Student's Name:</label>
+        <input type="text" id="name-p-5" name="name" placeholder="Your name">
+
+        <label for="grade">LRN ID:</label>
+        <input type="text" id="grade-p-5" name="grade" placeholder="LRN ID">
+
+        <label for="section">Students Grade&Section:</label>
+        <input type="text" id="section-p-5" name="section" placeholder="Students Grade&Section">
+
+        <label for="adviser">Adviser:</label>
+        <input type="text" id="adviser-p-5" name="adviser" placeholder="Your Adviser">
+
+        <label for="contact">Author Name:</label>
+        <input type="text" id="contact-p-5" name="contact" placeholder="Author">
+
+        <label for="title">Title of Book Borrowed:</label>
+        <input type="text" id="title-p-5" name="title" placeholder="Title of the book">
+
+        <label for="userType">User Type:</label>
+        <select id="userType-p-5" name="userType">
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+        </select>
+
+        <div id="studentOptions-p-5" style="display: none;">
+            <label for="studentType">Student Type:</label>
+            <select id="studentType-p-5" name="studentType">
+                <option value="junior">Junior</option>
+                <option value="senior">Senior</option>
+            </select>
+        </div>
+
+        <div id="facultyOptions-p-5" style="display: none;">
+            <label for="facultyType">Faculty Type:</label>
+            <select id="facultyType-p-5" name="facultyType">
+                <option value="senior">Senior</option>
+                <option value="junior">Junior</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+
+        <label for="dateBorrowed">Date Reserved:</label>
+        <input type="date" id="dateBorrowed-p-5" name="dateBorrowed">
+
+        <label for="accessionNo">Accession No.:</label>
+        <input type="text" id="accessionNo-p-5" name="accessionNo" placeholder="Accession No.">
+
+        
+
+        <button type="submit">Reserve!</button>
+    </form>
+</div>
+        </div>
+
+        <div class="preview" data-target="p-6">
+            <i class="fas fa-times" onclick="closePreview()"></i>
+            <img src="first.jpg" alt="">
+            <h3>My First Geography<br>
+                Book</h3>
+            <<div class="stars">
+                <p>Author Name<br>Igor Okunev</p>
+            </div>
+            <p>Returned Before 2 Days!!</p>
+            <div class="avail">Available</div>
+            <div class="buttons">
+        <a href="#" class="Cart" onclick="showForm('p-6')">Reserve Now</a>
+    </div>
+
+    <div id="reservationForm-p-6" style="display: none;">
+        <form id="reservationData-p-6" action="reserve.php" method="post">
+            <input type="hidden" id="productId-p-6" name="productId">
+            
+            <label for="name">Student's Name:</label>
+            <input type="text" id="name-p-6" name="name" placeholder="Your name">
+
+            <label for="grade">LRN ID:</label>
+            <input type="text" id="grade-p-6" name="grade" placeholder="LRN ID">
+
+            <label for="section-p-6">Students Grade&Section:</label>
+            <input type="text" id="section-p-6" name="section" placeholder="Students Grade&Section">
+
+            <label for="adviser">Adviser:</label>
+            <input type="text" id="adviser-p-6" name="adviser" placeholder="Your Adviser">
+
+            <label for="contact">Author Name:</label>
+            <input type="text" id="contact-p-6" name="contact" placeholder="Author">
+
+            <label for="title">Title of Book Borrowed:</label>
+            <input type="text" id="title-p-6" name="title" placeholder="Title of the book">
+
+            <label for="userType">User Type:</label>
+            <select id="userType-p-6" name="userType">
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+            </select>
+
+            <div id="studentOptions-p-6" style="display: none;">
+                <label for="studentType">Student Type:</label>
+                <select id="studentType-p-6" name="studentType">
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </div>
+
+            <div id="facultyOptions-p-6" style="display: none;">
+                <label for="facultyType">Faculty Type:</label>
+                <select id="facultyType-p-6" name="facultyType">
+                    <option value="senior">Senior</option>
+                    <option value="junior">Junior</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <label for="dateBorrowed">Date Reserved:</label>
+            <input type="date" id="dateBorrowed-p-6" name="dateBorrowed">
+
+            <label for="accessionNo">Accession No.:</label>
+            <input type="text" id="accessionNo-p-6" name="accessionNo" placeholder="Accession No.">
+
+            
+            <button type="submit">Reserve!</button>
+        </form>
+    </div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>
